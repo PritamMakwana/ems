@@ -19,6 +19,11 @@ public partial class login : System.Web.UI.Page
         conn = new SqlConnection(webStr);
         conn.Open();
 
+        if (Session["admin_id"] != null)
+        {
+            Response.Redirect("admin/index.aspx");
+        }
+
     }
     protected void log_in_Click(object sender, EventArgs e)
     {
@@ -29,9 +34,10 @@ public partial class login : System.Web.UI.Page
 
         if (ds.Tables[0].Rows.Count > 0)
         {
-            //Session["email"] = l_email.Text;
-           // Response.Redirect("Menu.aspx");
-            this.err_msg.InnerHtml = "<div class='alert alert-danger alert-dismissible' role='alert'>" + "Valid Admin " + ds.Tables[0].Rows[0][4].ToString()+" <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+            Session["admin_id"] = ds.Tables[0].Rows[0][0].ToString();
+            Session["admin_name"] = ds.Tables[0].Rows[0][1].ToString();
+             Response.Redirect("admin/index.aspx");
+            //this.err_msg.InnerHtml = "<div class='alert alert-danger alert-dismissible' role='alert'>" + "Valid Admin " + ds.Tables[0].Rows[0][0].ToString() + " <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
            
         }
         else
