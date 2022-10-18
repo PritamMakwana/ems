@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="department.aspx.cs" Inherits="admin_department" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="division.aspx.cs" Inherits="admin_division" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <title>Admin | Department</title>
+     <title>Admin | Division</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <!-- Content wrapper -->
+     <!-- Content wrapper -->
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Department</span></h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Division</span></h4>
 
               <!-- Basic Layout & Basic with Icons -->
               <div class="row">
@@ -18,21 +18,29 @@
                 <div class="col-xxl">
                   <div class="card mb-4">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                      <h5 class="mb-0">Department From</h5>
+                      <h5 class="mb-0">Division From</h5>
                     </div>
                     <div class="card-body">
-
                         <div class="row mb-3">
 
-                          <div class="col-sm-10">
-                            <%--<input type="text" class="form-control" id="basic-default-name" placeholder="Department Name" />--%>
-                            <asp:TextBox ID="dp_name" CssClass="form-control" runat="server" placeholder="Department Name" />
+                          <div class="col-sm-10 d-flex flex-row">
+
+                           <div class="col-sm-5 d-flex flex-column me-3">
+                           <label for="defaultSelect" class="form-label">Select Department</label>
+                           <asp:DropDownList  class="form-select" ID="select_dp" runat="server" AutoPostBack="true">
+                           </asp:DropDownList>
+                           </div>
+
+                            <div class="col-sm-5 d-flex flex-column">
+                            <label for="defaultSelect" class="form-label">Division name </label>
+                            <asp:TextBox ID="tb_dv_name" CssClass="form-control" runat="server" placeholder="Division Name" />
+                            </div>
+
                           </div>
                         </div>    
-                        <div class="row justify-content-start">
-                          <div class="col-sm-10">
-                            <%--<button type="submit" class="btn btn-primary">Add</button>--%>
-                            <asp:Button runat="server" CssClass="btn btn-primary" ID="btn_add_dp" Text="Add" OnClick="btn_add_dp_Click"/>
+                        <div class="row justify-content-end">
+                          <div class="col-sm-1">
+                            <asp:Button runat="server" CssClass="btn btn-primary" ID="btn_add_dv" Text="Add" OnClick="btn_add_dv_Click"/>
                           </div>
                         </div>
                     </div>
@@ -41,12 +49,11 @@
                   
                   </div>
                    <!-- Basic Layout end -->
-
-                     <!-- Basic Bootstrap Table -->
+                   <!-- Basic Bootstrap Table -->
                 <div class="card">
                 <h5 class="card-header">Departments List</h5>
                 <div class="table-responsive text-nowrap">
-                <asp:Repeater ID="rp_dp_list" runat="server" OnItemCommand="rp_dp_list_ItemCommand">  
+                <asp:Repeater ID="rp_dp_with_dv_list" runat="server">  
             <HeaderTemplate>  
                <table class="table">
                     <thead>
@@ -89,6 +96,8 @@
 
 
               <!--/ Basic Bootstrap Table -->
+
+
 
 
 
