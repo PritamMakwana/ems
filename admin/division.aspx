@@ -53,37 +53,64 @@
                 <div class="card">
                 <h5 class="card-header">Departments List</h5>
                 <div class="table-responsive text-nowrap">
-                <asp:Repeater ID="rp_dp_with_dv_list" runat="server">  
+                <asp:Repeater ID="rpt_dp" runat="server" OnItemDataBound="rpt_dp_ItemDataBound">  
             <HeaderTemplate>  
                <table class="table">
                     <thead>
                       <tr>
-                        <th>No</th>
+                        <th>Show</th>
                         <th>Department</th>
-                        <th>Number of Divisions</th>
-                        <th>Actions</th>
+                        <th>Divisions Number</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                 </HeaderTemplate>
                      <ItemTemplate>  
                 <tr>  
-                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><%#Container.ItemIndex + 1 %></strong></td>
+                       <td>
+                    <img alt="" style="cursor: pointer" src="../resource/img/icons/plus.png" />
+                    <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
+                        <asp:Repeater ID="rpt_dv" runat="server" OnItemCommand="rpt_dv_ItemCommand">
+                            <HeaderTemplate>
+                                <table class="table" >
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Division</th>
+                                        <th>Action</th>
+                                    </tr>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                  
+                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><%#Container.ItemIndex + 1 %></strong></td>
+                                    <td>
+                                      <%#DataBinder.Eval(Container,"DataItem.dv_name")%>  
+                                    </td>
+                                     <td>
+                                      <asp:LinkButton ID="dv_delete" 
+                            runat="server" 
+                            CssClass="btn btn-danger"
+                            CommandName="delete" 
+                            OnClientClick='javascript:return confirm("Are you sure you want to delete")'
+   CommandArgument='<%# DataBinder.Eval(Container.DataItem, "dv_id") %>'
+                            >Delete</asp:LinkButton>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                    </asp:Panel>
+                    <asp:HiddenField ID="hf_dp_id" runat="server" Value='<%# Eval("dp_id") %>' />
+                     
+                </td>
                     <td>  
                         <%#DataBinder.Eval(Container,"DataItem.dp_name")%>  
                     </td>  
                      <td>  
                         <%#DataBinder.Eval(Container,"DataItem.dp_division")%>  
-                    </td>  
-                    <td>  
-                        <asp:LinkButton ID="dp_delete" 
-                            runat="server" 
-                            CssClass="btn btn-danger"
-                            CommandName="delete" 
-                            OnClientClick='javascript:return confirm("Are you sure you want to delete")'
-   CommandArgument='<%# DataBinder.Eval(Container.DataItem, "dp_id") %>'
-                            >Delete</asp:LinkButton>
-                    </td>  
+                    </td>
                 </tr>  
             </ItemTemplate> 
                       <FooterTemplate>   
@@ -102,6 +129,18 @@
 
 
                 </div>
+
+       <script type="text/javascript" src="../resource/library/jquery-3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "[src*=plus]", function () {
+            $(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
+            $(this).attr("src", "../resource/img/icons/minus.png");
+        });
+        $("body").on("click", "[src*=minus]", function () {
+            $(this).attr("src", "../resource/img/icons/plus.png");
+            $(this).closest("tr").next().remove();
+        });
+    </script>
 
 </asp:Content>
 

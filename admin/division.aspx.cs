@@ -22,6 +22,7 @@ public partial class admin_division : System.Web.UI.Page
         if (!IsPostBack)
         {
             getDepartment();
+            getDepartmentTable();
         }
     }
 
@@ -37,6 +38,18 @@ public partial class admin_division : System.Web.UI.Page
         select_dp.DataValueField = "dp_id";
         select_dp.DataBind();
     }
+
+    public void getDepartmentTable()
+    {
+        string sel = "select * from department";
+        da = new SqlDataAdapter(sel, conn);
+        ds = new DataSet();
+        da.Fill(ds);
+        rpt_dp.DataSource = ds;
+        rpt_dp.DataBind();
+    }
+
+
     protected void btn_add_dv_Click(object sender, EventArgs e)
     {
         String SInsert = "INSERT INTO division VALUES(@dv,@dpid)";
@@ -60,4 +73,59 @@ public partial class admin_division : System.Web.UI.Page
         } 
     }
 
+    protected void rpt_dp_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            string select_dp_Id = (e.Item.FindControl("hf_dp_id") as HiddenField).Value;
+            Repeater rptDivision = e.Item.FindControl("rpt_dv") as Repeater;
+
+            string sel = "select * from division where dp_id = " + select_dp_Id;
+            da = new SqlDataAdapter(sel, conn);
+            ds = new DataSet();
+            da.Fill(ds);
+
+            rptDivision.DataSource = ds;
+            rptDivision.DataBind();
+        }
+    }
+    protected void rpt_dv_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "delete")
+        {
+            SqlCommand SqlCmd_dv_d = new SqlCommand("delete division where dv_id=@ID", conn);
+            SqlCmd_dv_d.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+
+            string sel = "select * from division where dv_id=" + e.CommandArgument.ToString() ;
+            da = new SqlDataAdapter(sel, conn);
+            ds = new DataSet();
+            da.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                string dp_id = ds.Tables[0].Rows[0][2].ToString();
+
+                SqlCommand SqlCmd_dp_min = new SqlCommand("UPDATE department SET dp_division = dp_division - 1 WHERE dp_id =" + dp_id, conn);
+                SqlCmd_dp_min.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+                SqlCmd_dp_min.ExecuteNonQuery();
+            }
+          
+
+            try
+            {
+                SqlCmd_dv_d.ExecuteNonQuery();
+                
+              
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
+
+            getDepartment();
+            getDepartmentTable();
+            
+        }
+
+     
+    }
 }

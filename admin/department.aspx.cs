@@ -59,9 +59,14 @@ public partial class admin_department : System.Web.UI.Page
         {
             SqlCommand SqlCmd = new SqlCommand("delete department where dp_id=@ID", conn);
             SqlCmd.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+
+            SqlCommand SqlCmd_dv = new SqlCommand("delete division where dp_id=@ID", conn);
+            SqlCmd_dv.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+
             try
             {
                 SqlCmd.ExecuteNonQuery();
+                SqlCmd_dv.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
