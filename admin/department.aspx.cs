@@ -20,7 +20,7 @@ public partial class admin_department : System.Web.UI.Page
         String webStr = ConfigurationManager.ConnectionStrings["sqlcon"].ConnectionString;
         conn = new SqlConnection(webStr);
         conn.Open();
-        get_dp();
+            get_dp();
     }
     protected void btn_add_dp_Click(object sender, EventArgs e)
     {

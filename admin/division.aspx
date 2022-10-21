@@ -8,7 +8,7 @@
      <!-- Content wrapper -->
             <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
+            
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Division</span></h4>
 
               <!-- Basic Layout & Basic with Icons -->
@@ -33,7 +33,7 @@
 
                             <div class="col-sm-5 d-flex flex-column">
                             <label for="defaultSelect" class="form-label">Division name </label>
-                            <asp:TextBox ID="tb_dv_name" CssClass="form-control" runat="server" placeholder="Division Name" />
+                            <asp:TextBox ID="tb_dv_name" CssClass="form-control" runat="server" placeholder="Division Name" required/>
                             </div>
 
                           </div>
@@ -128,7 +128,6 @@
 
 
 
-                </div>
 
        <script type="text/javascript" src="../resource/library/jquery-3.6.0/jquery.min.js"></script>
     <script type="text/javascript">

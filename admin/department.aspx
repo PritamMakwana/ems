@@ -5,10 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <!-- Content wrapper -->
-            <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
               <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Department</span></h4>
 
               <!-- Basic Layout & Basic with Icons -->
@@ -26,7 +23,7 @@
 
                           <div class="col-sm-10">
                             <%--<input type="text" class="form-control" id="basic-default-name" placeholder="Department Name" />--%>
-                            <asp:TextBox ID="dp_name" CssClass="form-control" runat="server" placeholder="Department Name" />
+                            <asp:TextBox ID="dp_name" CssClass="form-control" runat="server" placeholder="Department Name" required/>
                           </div>
                         </div>    
                         <div class="row justify-content-start">
@@ -92,7 +89,7 @@
 
 
 
-                </div>
+
 
 </asp:Content>
 
