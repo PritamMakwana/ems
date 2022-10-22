@@ -91,6 +91,8 @@ public partial class admin_division : System.Web.UI.Page
     }
     protected void rpt_dv_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
+
+
         if (e.CommandName == "delete")
         {
             SqlCommand SqlCmd_dv_d = new SqlCommand("delete division where dv_id=@ID", conn);
@@ -100,20 +102,25 @@ public partial class admin_division : System.Web.UI.Page
             da = new SqlDataAdapter(sel, conn);
             ds = new DataSet();
             da.Fill(ds);
+
             if (ds.Tables[0].Rows.Count > 0)
             {
                 string dp_id = ds.Tables[0].Rows[0][2].ToString();
+                string dv_name = ds.Tables[0].Rows[0][1].ToString();
 
                 SqlCommand SqlCmd_dp_min = new SqlCommand("UPDATE department SET dp_division = dp_division - 1 WHERE dp_id =" + dp_id, conn);
                 SqlCmd_dp_min.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
                 SqlCmd_dp_min.ExecuteNonQuery();
+
+                SqlCommand SqlCmd_dp_emp_delete = new SqlCommand("delete emp_info where emp_division = '" + dv_name + "'", conn);
+                SqlCmd_dp_emp_delete.ExecuteNonQuery();
             }
           
 
             try
             {
                 SqlCmd_dv_d.ExecuteNonQuery();
-                
+              
               
             }
             catch (Exception ex)

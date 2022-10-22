@@ -51,7 +51,7 @@
                    <!-- Basic Layout end -->
                    <!-- Basic Bootstrap Table -->
                 <div class="card">
-                <h5 class="card-header">Departments List</h5>
+                <h5 class="card-header">Divisions List</h5>
                 <div class="table-responsive text-nowrap">
                 <asp:Repeater ID="rpt_dp" runat="server" OnItemDataBound="rpt_dp_ItemDataBound">  
             <HeaderTemplate>  
@@ -76,6 +76,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Division</th>
+                                        <th>Employees</th>
                                         <th>Action</th>
                                     </tr>
                             </HeaderTemplate>
@@ -87,11 +88,17 @@
                                       <%#DataBinder.Eval(Container,"DataItem.dv_name")%>  
                                     </td>
                                      <td>
+                                      <a ID="emp_show"   
+                            class="btn btn-primary"
+                           href="employee.aspx?dv=<%# DataBinder.Eval(Container.DataItem, "dv_name") %>"
+                            >Show</a>
+                                    </td> 
+                                     <td>
                                       <asp:LinkButton ID="dv_delete" 
                             runat="server" 
                             CssClass="btn btn-danger"
                             CommandName="delete" 
-                            OnClientClick='javascript:return confirm("Are you sure you want to delete")'
+                            OnClientClick='javascript:return confirm("Are you sure you want to delete Division ?")'
    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "dv_id") %>'
                             >Delete</asp:LinkButton>
                                     </td>

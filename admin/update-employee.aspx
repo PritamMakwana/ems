@@ -1,13 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="add-employee.aspx.cs" Inherits="admin_add_employee" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="update-employee.aspx.cs" Inherits="admin_update_employee" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-     <title>Admin | Add Employee </title>
+        <title>Admin | Update Employee </title>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    
 <div class="d-flex flex-row justify-content-between">
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Employee/</span>Add Employee</h4>
-
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Employee/</span>Update Employee</h4>
 <a class="btn btn-primary align-self-baseline" href="employee.aspx">Back</a>
 </div>
 
@@ -308,10 +309,12 @@
       
 
             <%-- emp submit form btn--%>
-             <div class="col-md-12  d-flex flex-row mt-3">
-                 <div class="d-flex flex-row justify-content-end">
+             <div class="col-md-12  d-flex flex-row mt-3 justify-content-between">
+                
                      <asp:Button runat="server" ID="btn_emp_submit" CssClass="btn btn-primary mt-3" Text="Submit" OnClick="btn_emp_submit_Click" />
-                     </div>
+                     
+                  <asp:Button runat="server" ID="btn_emp_delete" CssClass="btn btn-danger mt-3" Text=" Delete Employee" OnClick="btn_emp_delete_Click"  OnClientClick='javascript:return confirm("Are you sure you want to this employee delete ?")' />
+                    
                  </div>
             <%--  --%>
 
@@ -326,5 +329,4 @@
 
 
 </asp:Content>
-
 

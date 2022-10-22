@@ -51,6 +51,7 @@
                         <th>No</th>
                         <th>Department</th>
                         <th>Number of Divisions</th>
+                        <th>Employees</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -64,13 +65,19 @@
                     </td>  
                      <td>  
                         <%#DataBinder.Eval(Container,"DataItem.dp_division")%>  
-                    </td>  
+                    </td> 
+                     <td>
+                                      <a ID="emp_show"   
+                            class="btn btn-primary"
+                           href="employee.aspx?dp=<%# DataBinder.Eval(Container.DataItem, "dp_name") %>"
+                            >Show</a>
+                                    </td> 
                     <td>  
                         <asp:LinkButton ID="dp_delete" 
                             runat="server" 
                             CssClass="btn btn-danger"
                             CommandName="delete" 
-                            OnClientClick='javascript:return confirm("Are you sure you want to delete")'
+                            OnClientClick='javascript:return confirm("Are you sure you want to delete Department ?")'
    CommandArgument='<%# DataBinder.Eval(Container.DataItem, "dp_id") %>'
                             >Delete</asp:LinkButton>
                     </td>  

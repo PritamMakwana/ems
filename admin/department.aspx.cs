@@ -55,24 +55,34 @@ public partial class admin_department : System.Web.UI.Page
 
     protected void rp_dp_list_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if (e.CommandName == "delete")
-        {
-            SqlCommand SqlCmd = new SqlCommand("delete department where dp_id=@ID", conn);
-            SqlCmd.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
 
-            SqlCommand SqlCmd_dv = new SqlCommand("delete division where dp_id=@ID", conn);
-            SqlCmd_dv.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+        string sel = "select * from department where dp_id = " + e.CommandArgument;
+        da = new SqlDataAdapter(sel, conn);
+        ds = new DataSet();
+        da.Fill(ds); 
+           string dp_name = ds.Tables[0].Rows[0][1].ToString();
+         
+           if (e.CommandName == "delete")
+           {
+               SqlCommand SqlCmd = new SqlCommand("delete department where dp_id=@ID", conn);
+               SqlCmd.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
 
-            try
-            {
-                SqlCmd.ExecuteNonQuery();
-                SqlCmd_dv.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ex.Message.ToString();
-            }
-            get_dp();
-        }
+               SqlCommand SqlCmd_dv = new SqlCommand("delete division where dp_id=@ID", conn);
+               SqlCmd_dv.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+
+               SqlCommand SqlCmd_dp_emp_delete = new SqlCommand("delete emp_info where emp_department = '" + dp_name + "'", conn);
+
+               try
+               {
+                   SqlCmd.ExecuteNonQuery();
+                   SqlCmd_dv.ExecuteNonQuery();
+                   SqlCmd_dp_emp_delete.ExecuteNonQuery();
+               }
+               catch (Exception ex)
+               {
+                   ex.Message.ToString();
+               }
+               get_dp();
+           }
     }
 }
