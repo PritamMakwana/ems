@@ -1,20 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="employee.aspx.cs" Inherits="admin_employee" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/employee/emp-master.master" AutoEventWireup="true" CodeFile="detail.aspx.cs" Inherits="employee_detail" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <title>Admin | Employee </title>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="head" Runat="Server">
+     <title>Employee | Details </title>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    
  <div class="d-flex flex-row justify-content-between">
-<h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Employee</span></h4>
-    <asp:Label ID="lbl_title" Text="" CssClass="text-muted fw-light fs-3" runat="server" />
-<a class="btn btn-primary align-self-baseline" href="add-employee.aspx">Add Employee</a>
+<h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Employee Details</span></h4>
 </div>
 
 
           <!-- Basic Bootstrap Table -->
                 <div class="card">
-                <h5 class="card-header">Employee List</h5>
+                <h5 class="card-header">Employee Details</h5>
                 <div class="table-responsive text-nowrap">
                 <asp:Repeater ID="rpt_emp_show" runat="server" OnItemDataBound="rpt_emp_show_ItemDataBound">  
             <HeaderTemplate>  
@@ -22,12 +23,10 @@
                     <thead>
                       <tr>
                         <th>Show</th>
-                        <th>No</th>
                         <th>Id</th>
                         <th>Name</th>
                         <th>Department</th>
-                        <th>Division</th>
-                        <th>Action</th>
+                        <th>Division</th>  
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -37,14 +36,14 @@
                        <td>
                     <img alt="" style="cursor: pointer" src="../resource/img/icons/plus.png" />
                     <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
-                        <asp:Repeater ID="rpt_emp_full_show" runat="server" OnItemCommand="rpt_emp_full_show_ItemCommand">
+                        <asp:Repeater ID="rpt_emp_full_show" runat="server" >
                             <HeaderTemplate>
                                 <table class="table" >
                                    
                             </HeaderTemplate>
                             <ItemTemplate>
                              
-                                     <td>
+                                     <td >
                                      Mobile 
                                     </td>
                                     <td>
@@ -75,7 +74,7 @@
                                     </td>
                                     </tr>
                                     <td>
-                                     Date of birth 
+                                     Date of Birth 
                                     </td>
                                     <td>
                                       <%#DataBinder.Eval(Container,"DataItem.emp_dob")%>  
@@ -215,10 +214,7 @@
                             </FooterTemplate>
                         </asp:Repeater>
                     </asp:Panel>
-                    <asp:HiddenField ID="emp_id" runat="server" Value='<%# Eval("emp_id") %>' />
-                     
                 </td>
-                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><%#Container.ItemIndex + 1 %></strong></td>
                     <td>  
                         <%#DataBinder.Eval(Container,"DataItem.emp_id")%>  
                     </td>  
@@ -231,12 +227,6 @@
                     <td>  
                         <%#DataBinder.Eval(Container,"DataItem.emp_division")%>  
                     </td>
-                    <td>
-                                      <a ID="emp_update"   
-                            class="btn btn-danger"
-                           href="update-employee.aspx?id=<%# DataBinder.Eval(Container.DataItem, "emp_id") %>"
-                            >Update</a>
-                                    </td>
                 </tr>  
             </ItemTemplate> 
                       <FooterTemplate>   
@@ -261,7 +251,6 @@
             $(this).closest("tr").next().remove();
         });
     </script>
-
 
 </asp:Content>
 

@@ -310,7 +310,7 @@
             <%-- emp submit form btn--%>
              <div class="col-md-12  d-flex flex-row mt-3">
                  <div class="d-flex flex-row justify-content-end">
-                     <asp:Button runat="server" ID="btn_emp_submit" CssClass="btn btn-primary mt-3" Text="Submit" OnClick="btn_emp_submit_Click" />
+                     <asp:Button runat="server" ID="btn_emp_submit" CssClass="btn btn-primary mt-3" Text="Update" OnClick="btn_emp_submit_Click" />
                      </div>
                  </div>
             <%--  --%>

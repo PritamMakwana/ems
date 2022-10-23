@@ -5,15 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_logout : System.Web.UI.Page
+public partial class employee_logout : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session.Remove("admin_id");
-        if (Session["admin_id"] == null)
+        Session.Remove("emp_id");
+        Session.Remove("emp_name");
+        if (Session["emp_id"] == null)
         {
             Response.Redirect("~/login.aspx");
         }
-       
     }
 }
