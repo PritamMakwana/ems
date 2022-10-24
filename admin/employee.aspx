@@ -7,7 +7,7 @@
 
  <div class="d-flex flex-row justify-content-between">
 <h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Employee</span></h4>
-    <asp:Label ID="lbl_title" Text="" CssClass="text-muted fw-light fs-3" runat="server" />
+    <asp:Label ID="lbl_title" Text="" CssClass="text-muted fw-light fs-3" runat="server"  />
 <a class="btn btn-primary align-self-baseline" href="add-employee.aspx">Add Employee</a>
 </div>
 

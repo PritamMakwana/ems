@@ -26,7 +26,7 @@
                   <div class="col-md-5 d-flex flex-column me-2">
 
                   <label for="defaultSelect" class="form-label">Name</label>
-                  <asp:TextBox ID="tb_ad_name" CssClass="form-control" runat="server" placeholder="admin name"
+                  <asp:TextBox ID="tb_ad_name" CssClass="form-control" MaxLength="50" runat="server" placeholder="admin name"
                        data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
                        title="Enter Admin Name" required/>
 
@@ -35,7 +35,7 @@
                   <div class="col-md-5 d-flex flex-column">
 
                   <label for="defaultSelect" class="form-label">Mobile No </label>
-                   <asp:TextBox ID="tb_ad_mobile"  CssClass="form-control" runat="server" placeholder="Admin mobile number"   TextMode="Number"
+                   <asp:TextBox ID="tb_ad_mobile"  CssClass="form-control" MaxLength="13" runat="server" placeholder="Admin mobile number"   TextMode="Number"
                      data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
                        title="Enter 10 Number"
                        required />                        
@@ -51,7 +51,7 @@
                   <div class="col-md-5 d-flex flex-column me-2">
 
                    <label for="defaultSelect" class="form-label">Email</label>
-                   <asp:TextBox ID="tb_ad_email"  CssClass="form-control" runat="server" placeholder="example@email.com"   TextMode="Email"
+                   <asp:TextBox ID="tb_ad_email" MaxLength="100"  CssClass="form-control" runat="server" placeholder="example@email.com"   TextMode="Email"
                      data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
                        title="this email using admin login"
                        required />                        
@@ -62,7 +62,7 @@
 
                         <label class="form-label" for="basic-default-password12">Password</label>
                        
-                             <asp:TextBox ID="tb_ad_pwd"  CssClass="form-control" 
+                             <asp:TextBox ID="tb_ad_pwd" MaxLength="50"  CssClass="form-control" 
                                  runat="server" 
                                  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"   
                                   data-bs-toggle="tooltip"

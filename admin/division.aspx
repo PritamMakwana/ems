@@ -33,7 +33,7 @@
 
                             <div class="col-sm-5 d-flex flex-column">
                             <label for="defaultSelect" class="form-label">Division name </label>
-                            <asp:TextBox ID="tb_dv_name" CssClass="form-control" runat="server" placeholder="Division Name" required/>
+                            <asp:TextBox ID="tb_dv_name"  MaxLength="100" CssClass="form-control" runat="server" placeholder="Division Name" required/>
                             </div>
 
                           </div>

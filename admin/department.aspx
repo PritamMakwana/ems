@@ -20,15 +20,12 @@
                     <div class="card-body">
 
                         <div class="row mb-3">
-
                           <div class="col-sm-10">
-                            <%--<input type="text" class="form-control" id="basic-default-name" placeholder="Department Name" />--%>
-                            <asp:TextBox ID="dp_name" CssClass="form-control" runat="server" placeholder="Department Name" required/>
+                            <asp:TextBox ID="dp_name" MaxLength="100" CssClass="form-control" runat="server"  placeholder="Department Name" required/>
                           </div>
                         </div>    
                         <div class="row justify-content-start">
                           <div class="col-sm-10">
-                            <%--<button type="submit" class="btn btn-primary">Add</button>--%>
                             <asp:Button runat="server" CssClass="btn btn-primary" ID="btn_add_dp" Text="Add" OnClick="btn_add_dp_Click"/>
                           </div>
                         </div>

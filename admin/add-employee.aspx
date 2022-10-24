@@ -24,21 +24,20 @@
                   <div class="col-md-5 d-flex flex-column me-2">
 
                   <label for="defaultSelect" class="form-label">Employee Name</label>
-                  <asp:TextBox ID="tb_emp_name" CssClass="form-control" runat="server" placeholder="employee name"
+                  <asp:TextBox ID="tb_emp_name" CssClass="form-control" runat="server"  MaxLength="100" placeholder="employee name"
                        data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
                        title="Enter Employee Name" required/>
-
                   </div>
 
                   <div class="col-md-5 d-flex flex-column">
 
                   <label for="defaultSelect" class="form-label">Mobile No </label>
-                   <asp:TextBox ID="tb_emp_mobile"  CssClass="form-control" runat="server" placeholder="employee mobile number"   TextMode="Number"
+                   <asp:TextBox ID="tb_emp_mobile" MaxLength="13"  CssClass="form-control" runat="server" placeholder="employee mobile number"   TextMode="Number"
                      data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
                        title="Enter 10 Number"
                        required />                        
                    <asp:RegularExpressionValidator ID="rev_mobile" runat="server" ControlToValidate="tb_emp_mobile"
-                       ErrorMessage="enter 10 digits" ValidationExpression="^[0-9]{10}" />
+                       ErrorMessage="enter 10 digits" ForeColor="Red" ValidationExpression="^[0-9]{10}" />
 
                     </div>
             </div>
@@ -49,7 +48,7 @@
                   <div class="col-md-5 d-flex flex-column me-2">
 
                    <label for="defaultSelect" class="form-label">Email</label>
-                   <asp:TextBox ID="tb_emp_email"  CssClass="form-control" runat="server" placeholder="example@email.com"   TextMode="Email"
+                   <asp:TextBox ID="tb_emp_email" MaxLength="100"   CssClass="form-control" runat="server" placeholder="example@email.com"   TextMode="Email"
                      data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
                        title="this email using employee login"
                        required />                        
@@ -60,7 +59,7 @@
 
                         <label class="form-label" for="basic-default-password12">Password</label>
                        
-                             <asp:TextBox ID="tb_emp_pwd"  CssClass="form-control" 
+                             <asp:TextBox ID="tb_emp_pwd" MaxLength="50"  CssClass="form-control" 
                                  runat="server" 
                                  placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"   
                                   data-bs-toggle="tooltip"
@@ -77,8 +76,8 @@
                   <div class="col-md-10 d-flex flex-column ">
 
                    <label for="defaultSelect" class="form-label mt-3">Address</label>
-                   <asp:TextBox ID="tb_emp_address"  CssClass="form-control" runat="server" placeholder="enter employee address"   TextMode="MultiLine" required />                        
-
+                   <asp:TextBox ID="tb_emp_address" MaxLength="200"  CssClass="form-control" runat="server" placeholder="enter employee address"   data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" 
+                       title="enter 200 maximum length"  TextMode="MultiLine" required />                   
                   </div>
                     </div>
            
@@ -310,7 +309,7 @@
             <%-- emp submit form btn--%>
              <div class="col-md-12  d-flex flex-row mt-3">
                  <div class="d-flex flex-row justify-content-end">
-                     <asp:Button runat="server" ID="btn_emp_submit" CssClass="btn btn-primary mt-3" Text="Update" OnClick="btn_emp_submit_Click" />
+                     <asp:Button runat="server" ID="btn_emp_submit" CssClass="btn btn-primary mt-3" Text="Submit" OnClick="btn_emp_submit_Click" />
                      </div>
                  </div>
             <%--  --%>
@@ -322,6 +321,7 @@
               </div>
         </div>
     </div>
+        </div>
      <%--form body end--%>
 
 
