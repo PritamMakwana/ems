@@ -14,12 +14,14 @@ public partial class employee_leave : System.Web.UI.Page
     SqlDataAdapter da;
     DataSet ds;
     SqlCommand cmd;
+    string emp_id;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["emp_id"] == null)
         {
             Response.Redirect("~/login.aspx");
         }
+        emp_id = Session["emp_id"].ToString();
         String webStr = ConfigurationManager.ConnectionStrings["sqlcon"].ConnectionString;
         conn = new SqlConnection(webStr);
         conn.Open();
@@ -28,14 +30,19 @@ public partial class employee_leave : System.Web.UI.Page
 
     public void getLeaveShort()
     {
-        string sel = "select * from leave where emp_id = " + Session["emp_id"] ;
+        string sel = "select * from leave where emp_id = " + emp_id;
         da = new SqlDataAdapter(sel, conn);
         ds = new DataSet();
         da.Fill(ds);
         if (ds.Tables[0].Rows.Count > 0)
         {
             rpt_leave_show.DataSource = ds;
-            rpt_leave_show.DataBind();      
+            rpt_leave_show.DataBind();
+            lbl_title.Text = "";
+        }
+        else
+        {
+            lbl_title.Text = "Not apply for leave";
         }
     }
 
@@ -65,12 +72,12 @@ public partial class employee_leave : System.Web.UI.Page
             try
             {
                 SqlCmd.ExecuteNonQuery();
+                Response.Redirect("leave.aspx");
             }
             catch (Exception ex)
             {
                 ex.Message.ToString();
             }
-            getLeaveShort();
         }
     }
 }

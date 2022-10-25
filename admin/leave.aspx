@@ -6,6 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      <div class="d-flex flex-row justify-content-between">
 <h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Leave</span></h4>
+           <asp:Label ID="lbl_title" Text="" CssClass="text-danger fw-light fs-3" runat="server"  />
 </div>
 
      <!-- Basic Bootstrap Table -->
@@ -13,7 +14,7 @@
                 <h5 class="card-header">Leave List</h5>
                      
                 <div class="table-responsive text-nowrap">
-                <asp:Repeater ID="rpt_leave_show" runat="server" OnItemDataBound="rpt_leave_show_ItemDataBound">  
+                <asp:Repeater ID="rpt_leave_show" runat="server" OnItemDataBound="rpt_leave_show_ItemDataBound" OnItemCommand="rpt_leave_show_ItemCommand" >  
             <HeaderTemplate>  
                <table class="table">
                     <thead>
@@ -25,6 +26,7 @@
                         <th>Apply Date</th>
                         <th>Status</th>
                         <th>Action</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -87,10 +89,19 @@
                     </td>
                   <td>  
                          <a ID="lv_update"   
-                            class="btn btn-danger"
+                            class="btn btn-primary"
                            href="update-leave.aspx?id=<%# DataBinder.Eval(Container.DataItem, "lv_id") %>"
                             >Update</a>
                                     </td>
+                          <td>  
+                        <asp:LinkButton ID="lv_delete" 
+                            runat="server" 
+                            CssClass="btn btn-danger"
+                            CommandName="delete" 
+                            OnClientClick='javascript:return confirm("Are you sure you want to delete Leave ?")'
+   CommandArgument='<%# DataBinder.Eval(Container.DataItem, "lv_id") %>'
+                            >Delete</asp:LinkButton>
+                    </td>  
                     </td>  
                 </tr>  
             </ItemTemplate> 

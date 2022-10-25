@@ -8,6 +8,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      <div class="d-flex flex-row justify-content-between">
 <h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Leave</span></h4>
+                    <asp:Label ID="lbl_title" Text="" CssClass="text-danger fw-light fs-3" runat="server"  />
+
 <a class="btn btn-primary align-self-baseline" href="add-leave.aspx">Add Leave</a>
 </div>
 
@@ -16,7 +18,7 @@
                 <h5 class="card-header">Leave List</h5>
                      
                 <div class="table-responsive text-nowrap">
-                <asp:Repeater ID="rpt_leave_show" runat="server" OnItemDataBound="rpt_leave_show_ItemDataBound">  
+                <asp:Repeater ID="rpt_leave_show" runat="server" OnItemDataBound="rpt_leave_show_ItemDataBound" OnItemCommand="rpt_leave_show_ItemCommand">  
             <HeaderTemplate>  
                <table class="table">
                     <thead>

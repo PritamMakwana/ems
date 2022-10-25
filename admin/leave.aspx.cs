@@ -31,6 +31,11 @@ public partial class admin_leave : System.Web.UI.Page
         {
             rpt_leave_show.DataSource = ds;
             rpt_leave_show.DataBind();
+            lbl_title.Text = "";
+        }
+        else
+        {
+            lbl_title.Text = "Not apply for leave";
         }
     }
 
@@ -48,6 +53,27 @@ public partial class admin_leave : System.Web.UI.Page
 
             RptLeaveFull.DataSource = ds;
             RptLeaveFull.DataBind();
+        }
+
+
+    }
+
+    protected void rpt_leave_show_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "delete")
+        {
+            SqlCommand SqlCmd = new SqlCommand("delete leave where lv_id=@ID", conn);
+            SqlCmd.Parameters.Add("@ID", SqlDbType.VarChar).Value = e.CommandArgument;
+
+            try
+            {
+                SqlCmd.ExecuteNonQuery();
+                Response.Redirect("leave.aspx");
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
         }
     }
 }
