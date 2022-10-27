@@ -1,20 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="leave.aspx.cs" Inherits="admin_leave" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/admin_sidebar.master" AutoEventWireup="true" CodeFile="loan.aspx.cs" Inherits="admin_loan" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-         <title>Admin | View Leaves</title>
+             <title>Admin | View Loans</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     <div class="d-flex flex-row justify-content-between">
-<h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Leave</span></h4>
-           <asp:Label ID="lbl_title" Text="" CssClass="text-danger fw-light fs-3" runat="server"  />
+ <div class="d-flex flex-row justify-content-between">
+<h4 class="fw-bold py-3 mb-4 align-self-baseline"><span class="text-muted fw-light">Loan</span></h4>
+<asp:Label ID="lbl_title" Text="" CssClass="text-danger fw-bold fs-3" runat="server"  />
+<a class="btn btn-primary align-self-baseline" href="approve-loan.aspx">Approved Loans</a>
 </div>
 
      <!-- Basic Bootstrap Table -->
                 <div class="card">
-                <h5 class="card-header">Leave List</h5>
+                <h5 class="card-header">Loan Request</h5>
                      
                 <div class="table-responsive text-nowrap">
-                <asp:Repeater ID="rpt_leave_show" runat="server" OnItemDataBound="rpt_leave_show_ItemDataBound" OnItemCommand="rpt_leave_show_ItemCommand" >  
+                <asp:Repeater ID="rpt_loan_show" runat="server" OnItemDataBound="rpt_loan_show_ItemDataBound" OnItemCommand="rpt_loan_show_ItemCommand" >  
             <HeaderTemplate>  
                <table class="table">
                     <thead>
@@ -22,7 +23,7 @@
                         <th>Show</th>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Leave Type</th>
+                        <th>Amount</th>
                         <th>Apply Date</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -36,38 +37,32 @@
                        <td>
                               <img alt="" style="cursor: pointer" src="../resource/img/icons/plus.png" />
                     <asp:Panel ID="pnlOrders" runat="server" Style="display: none">
-                        <asp:Repeater ID="rpt_leave_full_show" runat="server">
+                        <asp:Repeater ID="rpt_loan_full_show" runat="server">
                             <HeaderTemplate>
                                 <table class="table" >
                                    
                             </HeaderTemplate>
                                <ItemTemplate>
-                               <td class="fw-bold">
+                             
+                                       <td class="fw-bold">
                                    Employee ID
                                     </td>
                                     <td>
                                       <%#DataBinder.Eval(Container,"DataItem.emp_id")%>  
                                     </td>
                                    <tr/>
-                                     <td class="fw-bold">
-                                    Start Date
+                                      <td class="fw-bold">
+                                    Repayment Date
                                     </td>
                                     <td>
-                                      <%#DataBinder.Eval(Container,"DataItem.lv_start_date")%>  
-                                    </td>
-                                   <tr/>
-                                   <td class="fw-bold">
-                                     End Date
-                                    </td>
-                                    <td>
-                                      <%#DataBinder.Eval(Container,"DataItem.lv_end_date")%>  
+                                      <%#DataBinder.Eval(Container,"DataItem.ln_repayment_date")%>  
                                     </td>
                                    <tr/>
                                    <td class="fw-bold">
                                      Reason 
                                     </td>
                                     <td>
-                                      <%#DataBinder.Eval(Container,"DataItem.lv_reason")%>  
+                                      <%#DataBinder.Eval(Container,"DataItem.ln_reason")%>  
                                     </td>
                                    <tr/>
 
@@ -78,37 +73,36 @@
                             </FooterTemplate>
                         </asp:Repeater>
                     </asp:Panel>
-                    <asp:HiddenField ID="lv_id" runat="server" Value='<%# Eval("lv_id") %>' />
+                    <asp:HiddenField ID="ln_id" runat="server" Value='<%# Eval("ln_id") %>' />
                              </td>
                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><%#Container.ItemIndex + 1 %></strong></td>
                     <td >  
                        <%#DataBinder.Eval(Container,"DataItem.emp_name")%>  
                     </td>  
                      <td>  
-                        <%#DataBinder.Eval(Container,"DataItem.lv_type")%>  
+                        <%#DataBinder.Eval(Container,"DataItem.ln_amount")%>  
                     </td>
                     <td>  
-                        <%#DataBinder.Eval(Container,"DataItem.lv_apply_date")%>  
+                        <%#DataBinder.Eval(Container,"DataItem.ln_apply_date")%>  
                     </td>
                     <td class="fw-bolder">  
-                       <%#DataBinder.Eval(Container,"DataItem.lv_status")%>  
+                       <%#DataBinder.Eval(Container,"DataItem.ln_status")%>  
                     </td>
-                  <td>  
-                         <a ID="lv_update"   
+                     <td>  
+                         <a ID="ln_update"   
                             class="btn btn-primary"
-                           href="update-leave.aspx?id=<%# DataBinder.Eval(Container.DataItem, "lv_id") %>"
+                           href="update-rq-loan.aspx?id=<%# DataBinder.Eval(Container.DataItem, "ln_id") %>"
                             >Update</a>
-                                    </td>
-                          <td>  
-                        <asp:LinkButton ID="lv_delete" 
+                                    </td> 
+                        <td>  
+                        <asp:LinkButton ID="ln_delete" 
                             runat="server" 
                             CssClass="btn btn-danger"
                             CommandName="delete" 
-                            OnClientClick='javascript:return confirm("Are you sure you want to delete Leave ?")'
-   CommandArgument='<%# DataBinder.Eval(Container.DataItem, "lv_id") %>'
+                            OnClientClick='javascript:return confirm("Are you sure you want to delete Loan Request ?")'
+   CommandArgument='<%# DataBinder.Eval(Container.DataItem, "ln_id") %>'
                             >Delete</asp:LinkButton>
-                    </td>  
-                    </td>  
+                    </td> 
                 </tr>  
             </ItemTemplate> 
                       <FooterTemplate>   
@@ -132,6 +126,5 @@
             $(this).closest("tr").next().remove();
         });
     </script>
-
 </asp:Content>
 
