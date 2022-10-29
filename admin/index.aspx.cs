@@ -13,7 +13,6 @@ public partial class admin_index : System.Web.UI.Page
     SqlConnection conn;
     SqlDataAdapter da;
     DataSet ds;
-    SqlCommand cmd;
     protected void Page_Load(object sender, EventArgs e)
     {
         String webStr = ConfigurationManager.ConnectionStrings["sqlcon"].ConnectionString;

@@ -41,12 +41,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
  <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
 
          <!-- sidebar start-->
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme ">
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme  ">
           <div class="app-brand demo text-center">
             <a href="index.aspx" class="app-brand-link text-center">
               <span class="app-brand-logo demo">
@@ -92,7 +91,7 @@
         <!-- sidebar end-->
 
          <!-- header start-->
-         <div class="layout-page">
+         <div class="layout-page ">
           <!-- Navbar -->
 
           <nav
@@ -124,7 +123,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="detail.aspx">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
