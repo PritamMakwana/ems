@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <div class="row">
-                <div class="col-lg-8 mb-4 order-0">
+                <div class="col-lg-6 mb-4 order-0">
                   <div class="card">
                       <a href="detail.aspx" >
                     <div class="d-flex align-items-end row">
@@ -52,7 +52,7 @@
 
 
                 
-                    <div class="col-lg-4 md-4 order-1">
+                    <div class="col-lg-6 md-4 order-1 ">
                       <div class="card">    
                            <a href="detail.aspx" >       
                         <div class="card-body mt-3 mb-3">
